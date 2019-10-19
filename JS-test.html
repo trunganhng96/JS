@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript</title>
+    <link rel="stylesheet" type="text/css" href="css/style-JStest.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    CREATE EVENT
+    *Cach1: In HTML*
+    <p id="tenID" onclick="tenFunction()">Click me</p>
+    <script>
+        function tenFunction() {
+            document.getElementById("tenID").innerHTML = "U Clicked Me";
+        }
+    </script>
+
+
+    *Cach2: In JS*
+    <p id="tenID">Click me</p>
+    <script>
+        document.getElementById("tenID").onclick = function() {tenFunction()}
+        function tenFunction() {
+            document.getElementById("tenID").innerHTML = "U Clicked Me";
+        }
+    </script>
+
+
+    *Cach3: In JS*
+    <p id="tenID">Click me</p>
+    <script>
+        document.getElementById("tenID").addEventListener("click" , tenFunction);
+        function tenFunction() {
+            document.getElementById("tenID").innerHTML = "U Click Me";
+        }
+    </script>
+
+
+    *tham số*
+    <p id="tenID" onclick="myFunction(this , 'red')">Click me</p>
+    <script>
+        function myFunction(element,color) {
+            element.style.color = color;
+        }
+    </script>
+
+
+    *VD khác* 
+    <p id="tenID" onclick="tenFunction()">Click me</p>
+    <script>
+        function tenFunction() {
+            document.getElementById("tenID").style.color = "red";
+        }
+    </script>
+
+
+    <p id="tenID"></p>
+    <button onclick="getElementById('tenID').innerHTML=Date()">
+        Click Me 
+    </button>
+
+
+    Field1: <input type="text" id="ID" value="Click Me">
+    <br>
+    <br>
+    Field2: <input type="text" id="Password">
+    <br>
+    <br>
+    <button onclick="tenFunction()">Copy ID</button>
+    <script>
+        function tenFunction() {
+            document.getElementById("Password").value = document.getElementById("ID").value;
+        }
+    </script>
+
+
+    <p>Click Me</p>
+    <script>
+        window.onclick = tenFunction;
+        function tenFunction() {
+            document.getElementsByTagName("body")[0].style.backgroundColor="red";
+        }
+    </script>
+
+
+    *VD có scss*
+    <div class="tenClassdiv1">
+        <button id="tenIDbutton" class="tenClassbutton">
+            Click Me
+        </button>
+        <div id="tenIDdiv" class="tenClassdiv2">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById("tenIDbutton").onclick = function() {tenFunction()};
+        function tenFunction() {
+            document.getElementById("tenIDdiv").classList.toggle("classnaodo");
+        }
+    </script>
+
+
+    *Thêm event cho window*
+    <div id="tenID"></div>
+    <script language="JavaScript">
+        window.addEventListener("resize", function() {
+            document.getElementById("tenID").innerHTML = "Click Me";
+        });
+    </script>
+
+
+    *Thêm tham số vào event bằng addEventListener()*
+    <input type="button" id="tenID1" value="Click Me">
+    <div id="tenID2"></div>
+    <script language="JavaScript">
+        var tenBien = document.getElementById("tenID1");
+        tenBien.addEventListener('click', function() {
+            tenFunction(13 , 10);
+        });
+        function tenFunction(a , b) {
+            alert(a + b);
+        }
+    </script>
+    
+
+
+    STOP EVENT 
+    <a id="tenID" href="https://www.w3schools.com/">Click Me</a>
+    <script>
+        document.getElementById("tenID").addEventListener("click" , function(event) {
+            event.preventDefault()
+        });
+    </script>
+
+
+    Checkbox: <input type="checkbox" id="tenID">
+    <script>
+        document.getElementById("tenID").addEventListener("click" , function(event) {
+            event.preventDefault()
+        });
+    </script>
+
+    SELECTOR 
+    *First element*
+    <h1 class="tenClass">Click Me</h1>
+    <p class="tenClass">Click Me</p>
+    <button onclick="tenFunction()">Click Me</button>
+    <script>
+        function tenFunction() {
+            document.querySelector(".tenClass").style.color = "red";
+        }
+    </script>
+
+
+    <p>Click Me</p>
+    <p>Click Me</p> 
+    <button onclick="tenFunction()">Click Me</button>
+    <script>
+    function tenFunction() {
+    document.querySelector("p").style.backgroundColor = "red";
+    }
+    </script>
+
+
+    <div>
+        <h1>Click Me</h1>
+        <p>Click Me</p>
+    </div>
+    <div>
+        <h1>Click Me</h1>
+        <p>Click Me</p>
+    </div>
+    <button onclick="tenFunction()">Click Me</button>
+    <script>
+        function tenFunction() {
+            var x = document.querySelector("div > p");
+            x.style.backgroundColor = "red";
+        }
+    </script>
+
+
+    <h1>Click Me</h1>
+    <h2>Click Me</h2>
+    <script>
+        document.querySelector("h1, h2").style.backgroundColor = "red";
+    </script>
+
+
+    *Selected element*
+    <h1 class="tenClass">Click Me</h1>
+    <p class="tenClass">Click Me</p> 
+    <button onclick="tenFunction()">Click Me</button>
+    <script>
+    function tenFunction() {
+    document.querySelector("h1.tenClass").style.backgroundColor = "red";
+    }
+    </script>
+
+
+    <a href="">w3schools.com</a>
+    <a href="" target="_blank">facebook.com</a>
+    <a href="" target="_top">google.com</a>
+    <button onclick="tenFunction()">Click Me</button>
+    <script>
+        function tenFunction() {
+            document.querySelector("a[target]").style.border = "10px solid red";
+        }
+    </script>
+
+
+    <p id="tenID">Click Me</p>
+    <button onclick="tenFunction()">Click Me</button>
+    <script>
+        function tenFunction() {
+            document.querySelector("#tenID").innerHTML = "U Clicked Me";
+        }
+    </script>
+
+
+    Interval Timer in JS
+    *setTimeout*
+    <button onclick="tenBien = setTimeout(tenFunction, 1310)">Click Me</button>
+    <button onclick="clearTimeout(tenBien)">Click Me before 1310ms</button>
+    <script>
+        function tenFunction() {
+            alert("U Clicked Me");
+        }
+    </script>
+
+
+    <button onclick="tenFunction1()">Click Me</button>
+    <script>
+        var tenBien;
+        function tenFunction1() {
+            tenBien = setTimeout(tenFunction2, 1310);
+        }
+        function tenFunction2() {
+            alert("U Clicked Me");
+        }
+    </script>
+
+
+    <button onclick="tenFunction()">Click Me</button>
+    <input type="text" id="tenID">
+    <script>
+        function tenFunction() {
+            var tenBien = document.getElementById("tenID");
+            setTimeout(function() { tenBien.value = "1s"},1000);
+            setTimeout(function() { tenBien.value = "2s"}, 2000);
+            setTimeout(function() { tenBien.value = "3s"}, 3000);
+        }
+    </script>
+
+
+    <button onclick="tenFunction()">Click Me</button>
+    <script>
+        function tenFunction() {
+            var tenBien = window.open("", "", "width=200, height=100");
+            tenBien.document.write("<p>U Clicked Me</p>");
+            setTimeout(function() { tenBien.close()}, 1310);
+        }
+    </script>
+
+
+    <button onclick="tenFunction1()">Start Me</button>
+    <input type="text" id="tenID">
+    <button onclick="tenFunction2()">Stop Me</button>
+    <script>
+        var tenBien1 = 0;
+        var tenBien2;
+        var tenBien3 = 0;
+        function tenFunction() {
+            document.getElementById("tenID").value = tenBien1;
+            tenBien1 = tenBien1 + 1;
+            tenBien2 = setTimeout(tenFunction, 1310);
+        }
+        function tenFunction1() {
+            if (!tenBien3) {
+                tenBien3 = 1;
+                tenFunction();
+            }
+        }
+        function tenFunction2() {
+            clearTimeout(tenBien2);
+            tenBien3 = 0;
+        }
+    </script>
+
+
+    *VD phải thêm onload="tenFunction()" ở body*
+    <div id="tenID"></div>
+    <script>
+    function tenFunction() {
+        var tenBien = new Date();
+        var tenBien1 = tenBien.getHours();
+        var tenBien2 = tenBien.getMinutes();
+        var tenBien3 = tenBien.getSeconds();
+        tenBien2 = checkTime(tenBien2);
+        tenBien3 = checkTime(tenBien3);
+        document.getElementById("tenID").innerHTML = tenBien1 + ":" + tenBien2 + ":" + tenBien3;
+        var tenBien4 = setTimeout(function(){ tenFunction() }, 1310);
+    }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    </script>
+
+
+    <button onclick="tenFunction()">Click Me</button>
+    <p id="tenID1"></p>
+    <p id="tenID2"></p>
+    <script>
+        var tenBien;
+        function tenFunction() {
+            tenBien = setTimeout(function() {
+                alertFunc("thamSo1", "thamSo2");
+            }, 1310);
+        }
+        function alertFunc(thamSo1, thamSo2) {
+            document.getElementById("tenID1").innerHTML += "Click Me";
+            document.getElementById("tenID2").innerHTML += "Có 2 Tham Số được lấy ra bằng phương thức tenFucntion2: <br>" + thamSo1 + "<br>" + thamSo2 + "<br>";
+        }
+    </script>
+
+
+    <p id="tenID"></p>
+    <button onclick="clearInterval(tenBien1)">Click Me</button>
+    <script>
+        var tenBien1 = setInterval(tenFunction, 1310);
+        function tenFunction() {
+            var tenBien2 = new Date();
+            document.getElementById("tenID").innerHTML = tenBien2.toLocaleTimeString();
+        }
+    </script>
+
+</body>
+</html>
