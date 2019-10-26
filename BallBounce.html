@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>BallBounce</title>
+    </head>
+    <body style="margin: 0 !important; display: block; overflow: hidden; padding: 0 !important;">
+        <canvas id="ballBounce" width="" height="" ></canvas>
+        <Script>
+            // variables
+            var canvas;
+            var ctx;
+            var bx ;
+            var by ;
+            var xv = 4;
+            var yv = 4;
+            var bw = 43;
+            var timeOut = 43;
+            
+
+            //tạo canvas
+            window.onload = function() {
+            canvas = document.getElementById("ballBounce");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            window.resizeTo(canvas.width,canvas.height);
+            bx = canvas.width / 2;
+            by = canvas.height / 2;
+            ctx = canvas.getContext("2d");
+            setTimeout(action, timeOut);
+            }
+
+            // hàm vẽ
+            function draw() {
+                // vẽ Canvas 
+                ctx.fillStyle = "black";
+                ctx.fillRect(0,0,canvas.width,canvas.height);
+
+                // vẽ bóng
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.arc(bx,by,bw,0,Math.PI*2);
+                ctx.fill();
+                ctx.closePath(); 
+            }
+            
+            // random hướng
+            if (Math.floor(Math.random() * 2) == 0) {
+                    xv = -xv;
+            }
+            if (Math.floor(Math.random() * 2) == 0) {
+                yv = -yv;
+            }
+
+            // di chuyển bóng
+            function update() {
+                bx += xv;
+                by += yv;   
+            }
+
+            // hàm xử lý bóng đập
+            function Bounce() {
+                // đập trái
+                if(bx < bw) {
+                    xv = -xv;       
+                }
+
+                // đập phải
+                if(bx > canvas.width - bw) {
+                    xv = -xv;       
+                }
+
+                // đập trên
+                if(by < bw) {
+                    yv = -yv;
+                }
+
+                // đập dưới
+                if(by > canvas.height - bw) {
+                    yv = -yv;       
+                }
+            }
+            
+            window.addEventListener('resize', resize, false);
+            // hàm thay đổi kích thước màn hình
+            function resize() {
+                if(canvas.width != window.innerWidth) {
+                    canvas.width = window.innerWidth
+                }
+                if(canvas.height != window.innerHeight) {
+                    canvas.height = window.innerHeight
+                }
+                if(canvas.width < bx + bw -5) {
+                    bx = canvas.width / 2;
+                    by = canvas.height / 2;
+                }
+                if(canvas.height < by + bw -5) {
+                    bx = canvas.width / 2;
+                    by = canvas.height / 2;
+                }
+            }
+
+            document.addEventListener("keydown", pressKeyboard, false);
+            // hàm tăng giảm tốc độ bằng mũi tên lên xuống
+            function pressKeyboard(e) {
+                var arrow = e.keyCode;
+                switch (arrow) {
+                    case 38: {
+                        timeOut -= 8;
+                        if (timeOut < 0) {
+                            timeOut = 0;
+                        }
+                        break;
+                    }
+
+                    case 40: {
+                        timeOut += 8;
+                        if (timeOut > 43) {
+                            timeOut = 43;
+                        }
+                        break;
+                    }
+                    default:
+                }
+            }
+
+            // hàm thực hiện
+            function action() {
+                draw();
+                Bounce();
+                update();
+                resize();
+                setTimeout(action, timeOut);
+            }
+        </script>
+    </body>
+</html>
